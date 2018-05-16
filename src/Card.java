@@ -3,59 +3,64 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
 
 public class Card extends JButton {
 
 
     char top = ' ';
     char bottom;
-    static boolean canClick = true;
+    boolean exposed = false;
+
 
     Card() {
         super();
     }
 
 
-    public static void showCard(Card card) {
+    static void showCard(Card card) {
 
-        if (canClick) {
-            if (Checker.second != null) {
+        if (Checker.second == null && !card.getExposed()) {
 
-                Checker.first = null;
-                Checker.second = null;
-            }
             if (Checker.first == null) {
-                System.out.println("pierwsza");
+                card.setExposed(true);
+                card.setTextToBottom();
                 Checker.first = card;
-                Checker.first.setTextToBottom();
-            } else if(!Checker.first.equals(card)) {
-                System.out.println("druga");
+
+            } else if (!Checker.first.equals(card)) {
+                card.setExposed(true);
+                card.setTextToBottom();
                 Checker.second = card;
-                Checker.second.setTextToBottom();
-                canClick = false;
+                new Thread(new Checker()).start();
             }
         }
     }
 
 
-    public void setBottom(char bottom) {
+    void setBottom(char bottom) {
 
         this.bottom = bottom;
     }
 
-    public void setTextToBottom() {
+    void setTextToBottom() {
 
         setText("" + bottom);
     }
 
-    public void setTextToTop() {
+    void setTextToTop() {
 
         setText("" + top);
     }
 
+    void setExposed(boolean exposed) {
+        this.exposed = exposed;
+    }
 
-    public static List<Character> createDeck(int n) {
+    boolean getExposed() {
+        return exposed;
+    }
+
+
+    static List<Character> createDeck(int n) {
 
         List<Character> deck = new ArrayList<>();
         boolean e = false;
@@ -83,7 +88,7 @@ public class Card extends JButton {
     }
 
 
-    public static List<Character> duplicateCharakter(List<Character> deck) {
+    static List<Character> duplicateCharakter(List<Character> deck) {
 
         List<Character> secondCard = new ArrayList<>(deck);
 
@@ -96,7 +101,7 @@ public class Card extends JButton {
     }
 
 
-    public static char randomChar() {
+    static char randomChar() {
 
         return (char) ((Math.random() * (887 - 176) + 176));
     }

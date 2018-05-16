@@ -24,11 +24,12 @@ public class RankFrame extends JFrame {
         jPanel.add(new JLabel(" Your Name"));
         jPanel.add(jTextField);
         jPanel.add(jButton);
+        jPanel.setBackground(new Color(153, 163, 164));
         add(jPanel);
-
 
         pack();
         setSize(new Dimension(225, 250));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

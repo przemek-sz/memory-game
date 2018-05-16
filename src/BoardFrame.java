@@ -1,13 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-import static java.lang.Thread.sleep;
 
 public class BoardFrame extends JFrame {
 
-    public static int c = 0;
-
-    BoardFrame(int k, JFrame f) {
+    BoardFrame(int k, JFrame menuFrame) {
         super();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,13 +12,15 @@ public class BoardFrame extends JFrame {
         JPanel boardPanel = new JPanel();
         boardPanel.setLayout(new GridLayout(k, k));
 
-        for(Character character:Card.createDeck(k)){
+
+        for (Character character : Card.createDeck(k)) {
             Card card = new Card();
             card.setBottom(character);
-            card.setFont(new Font("Arial",Font.BOLD,450/k));
-            card.addActionListener(actionEvent ->{
+            card.setFont(new Font("Arial", Font.BOLD, 450 / k));
+            card.setSize(10, 100);
+            card.setBackground(new Color(164, 188, 183));
+            card.addActionListener(actionEvent -> {
                 Card.showCard(card);
-                new Thread(new Checker()).start();
             });
             boardPanel.add(card);
         }
@@ -31,7 +30,7 @@ public class BoardFrame extends JFrame {
         JButton menuButton = new JButton("Menu");
         menuButton.addActionListener(actionEvent -> {
             dispose();
-            f.setVisible(true);
+            menuFrame.setVisible(true);
 
         });
 
@@ -48,13 +47,13 @@ public class BoardFrame extends JFrame {
 
         pack();
 
-        setMinimumSize(new Dimension(640,480));
+        setMinimumSize(new Dimension(640, 480));
 
-        setSize((640*(k/4)),480*(k/4));
+        setSize((640 * (k / 4)), 480 * (k / 4));
+        setLocationRelativeTo(null);
         setVisible(true);
 
-        new Thread(new Counter(timer,k,this,f)).start();
-
+        new Thread(new Counter(timer, k, this, menuFrame)).start();
 
     }
 

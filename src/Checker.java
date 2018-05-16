@@ -12,36 +12,36 @@ public class Checker implements Runnable {
     public void run() {
 
         if (first != null && second != null) {
-            System.out.println("Sprawdzanie");
-            Card f=first;
-            Card s=second;
             checkCard();
         }
+
     }
-
-
 
     public void checkCard() {
 
 
         if (first.bottom == second.bottom) {
-            System.out.println("Takie same");
-            BoardFrame.c++;
-            Card.canClick=true;
-        } else {
+            first = null;
+            second = null;
+            Counter.foundPair++;
 
-            System.out.println("Różne");
+        } else {
 
             try {
                 sleep(2000);
             } catch (InterruptedException e) {
 
             }
+
             SwingUtilities.invokeLater(() -> {
                 first.setTextToTop();
+                first.setExposed(false);
+                first = null;
+
                 second.setTextToTop();
+                second.setExposed(false);
+                second = null;
             });
-            Card.canClick=true;
         }
     }
 }

@@ -1,8 +1,17 @@
 import java.io.*;
 
+
 public class WriterReader {
 
     String path = "rank";
+
+    WriterReader() {
+        try {
+            new File("rank").createNewFile();
+        } catch (IOException e) {
+
+        }
+    }
 
     public String readFile() {
 
@@ -36,6 +45,8 @@ public class WriterReader {
             return stringBuffer.toString();
         }
         return null;
+
+
     }
 
 
@@ -45,7 +56,7 @@ public class WriterReader {
 
         if (readFile() != null) {
             stringBuffer.append(readFile());
-            System.out.println(stringBuffer.toString());
+            //System.out.println(stringBuffer.toString());
         }
 
         stringBuffer.append(name + " " + k + "x" + k + " " + time / 60 + " " + time % 60 + " " + (int) (10 * ((double) (k * k) / (double) time)) + "\n");
@@ -73,7 +84,7 @@ public class WriterReader {
             }
         }
 
-
     }
+
 }
 

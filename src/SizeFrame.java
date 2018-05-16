@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class SizeFrame extends JFrame {
 
-    SizeFrame(JFrame f) {
+    SizeFrame(JFrame menuFrame) {
 
         super();
 
@@ -17,10 +17,28 @@ public class SizeFrame extends JFrame {
 
         JButton jButtonPlay = new JButton("Play");
         jButtonPlay.addActionListener(actionEvent -> {
-            new BoardFrame((int) (jSpinner.getValue()), f);
-            dispose();
-            f.setVisible(false);
+            if ((int) jSpinner.getValue() % 2 == 0) {
+                new BoardFrame((int) (jSpinner.getValue()), menuFrame);
+                dispose();
+                menuFrame.setVisible(false);
+            } else {
+                JDialog dialog = new JDialog();
+                JPanel panel = new JPanel();
+                panel.setLayout(new BorderLayout());
+                panel.add(new JLabel("Podaj liczbe parzysta"), BorderLayout.PAGE_START);
+                JButton jButton = new JButton("OK");
+                jButton.addActionListener(actionEvent1 -> {
+                    dialog.dispose();
+                });
+                panel.add(jButton, BorderLayout.PAGE_END);
+                dialog.add(panel);
+                dialog.setSize(250, 100);
+                dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
+            }
         });
+
         JButton jButtonBack = new JButton("Back");
         jButtonBack.addActionListener(actionEvent -> dispose());
 
@@ -33,6 +51,7 @@ public class SizeFrame extends JFrame {
 
         pack();
         setSize(new Dimension(225, 100));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }
