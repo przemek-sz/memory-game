@@ -13,23 +13,18 @@ public class MenuFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel();
-        mainPanel.setBorder(new EmptyBorder(new Insets(30, 0, 0, 0)));
+        mainPanel.setBorder(new EmptyBorder(new Insets(100, 260, 100, 260)));
         mainPanel.setBackground(new Color(153, 163, 164));
 
 
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-        menuPanel.setBorder(new EmptyBorder(new Insets(40, 70, 40, 70)));
         menuPanel.setBackground(new Color(153, 163, 164));
 
 
-        JLabel jLabel1 = new JLabel("Memory");
-        jLabel1.setBorder(new EmptyBorder(new Insets(0, 30, 0, 30)));
-
-
+        JLabel jLabel1 = new JLabel("Memory The Game");
         //JLabel jLabel2 = new JLabel("s16859");
         //jLabel2.setBorder(new EmptyBorder(new Insets(0,30,0,30)));
-
 
         JButton jButton1 = new JButton(" New Game ");
         jButton1.addActionListener((actionEvent) -> new SizeFrame(this));
@@ -43,6 +38,9 @@ public class MenuFrame extends JFrame {
         menuPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         //menuPanel.add(jLabel2);
         menuPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+
+
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         menuPanel.add(jButton1);
         menuPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         menuPanel.add(jButton2);
@@ -54,10 +52,11 @@ public class MenuFrame extends JFrame {
         add(mainPanel);
 
         pack();
+        setTitle("Memory The Game");
         setSize(640, 480);
         setLocationRelativeTo(null);
         setVisible(true);
 
-    }
 
+    }
 }

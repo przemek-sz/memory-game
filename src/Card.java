@@ -17,7 +17,7 @@ public class Card extends JButton {
     }
 
 
-    static void showCard(Card card) {
+    public static void showCard(Card card) {
 
         if (Checker.second == null && !card.getExposed()) {
 
@@ -36,31 +36,31 @@ public class Card extends JButton {
     }
 
 
-    void setBottom(char bottom) {
+    public void setBottom(char bottom) {
 
         this.bottom = bottom;
     }
 
-    void setTextToBottom() {
+    public void setTextToBottom() {
 
         setText("" + bottom);
     }
 
-    void setTextToTop() {
+    public void setTextToTop() {
 
         setText("" + top);
     }
 
-    void setExposed(boolean exposed) {
+    public void setExposed(boolean exposed) {
         this.exposed = exposed;
     }
 
-    boolean getExposed() {
+    public boolean getExposed() {
         return exposed;
     }
 
 
-    static List<Character> createDeck(int n) {
+    public static List<Character> createDeck(int n) {
 
         List<Character> deck = new ArrayList<>();
         boolean e = false;
@@ -77,6 +77,7 @@ public class Card extends JButton {
             if (e) {
                 i--;
                 e = false;
+                System.out.println(c);
             } else {
                 deck.add(c);
                 e = false;
@@ -88,7 +89,7 @@ public class Card extends JButton {
     }
 
 
-    static List<Character> duplicateCharakter(List<Character> deck) {
+    public static List<Character> duplicateCharakter(List<Character> deck) {
 
         List<Character> secondCard = new ArrayList<>(deck);
 
@@ -101,9 +102,16 @@ public class Card extends JButton {
     }
 
 
-    static char randomChar() {
+    public static char randomChar() {
 
-        return (char) ((Math.random() * (887 - 176) + 176));
+        char c=' ';
+
+        while(c==' ') {
+            c= (char) ((Math.random() * (887 - 176) + 176));
+            //c= (char) ((Math.random() * (1423 - 176) + 176));
+        }
+
+        return c;
     }
 
 }

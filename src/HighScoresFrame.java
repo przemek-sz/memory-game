@@ -58,6 +58,7 @@ public class HighScoresFrame extends JFrame {
 
         pack();
         setSize(250, 350);
+        setTitle("High Scores");
         setLocationRelativeTo(null);
         setVisible(true);
 

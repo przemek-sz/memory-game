@@ -29,6 +29,7 @@ public class RankFrame extends JFrame {
 
         pack();
         setSize(new Dimension(225, 250));
+        setTitle("Rank");
         setLocationRelativeTo(null);
         setVisible(true);
     }

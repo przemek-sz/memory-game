@@ -16,6 +16,7 @@ public class BoardFrame extends JFrame {
         for (Character character : Card.createDeck(k)) {
             Card card = new Card();
             card.setBottom(character);
+            card.setText(""+character);
             card.setFont(new Font("Arial", Font.BOLD, 450 / k));
             card.setSize(10, 100);
             card.setBackground(new Color(164, 188, 183));
@@ -50,6 +51,7 @@ public class BoardFrame extends JFrame {
         setMinimumSize(new Dimension(640, 480));
 
         setSize((640 * (k / 4)), 480 * (k / 4));
+        setTitle("Game");
         setLocationRelativeTo(null);
         setVisible(true);
 

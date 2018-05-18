@@ -51,6 +51,7 @@ public class SizeFrame extends JFrame {
 
         pack();
         setSize(new Dimension(225, 100));
+        setTitle("New Game");
         setLocationRelativeTo(null);
         setVisible(true);
     }
